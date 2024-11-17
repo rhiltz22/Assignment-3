@@ -43,7 +43,7 @@ public class ProductManagement {
             }
         }
 
-        // hardcoded insertion
+        // hardcoded insertion examples
         Product newProduct1 = new Product("P1000", "Wireless Earbuds", "Electronics", 59.99);
         tree.put("P1000", newProduct1);
         System.out.println("Inserted: " + newProduct1);
@@ -51,6 +51,14 @@ public class ProductManagement {
         Product newProduct2 = new Product("P1001", "Gaming Mouse", "Accessories", 29.99);
         tree.put("P1001", newProduct2);
         System.out.println("Inserted: " + newProduct2);
+
+        // duplicate example
+         try {
+            Product duplicateProduct = new Product("P1000", "Duplicate Wireless Earbuds", "Electronics", 49.99);
+            tree.put("P1000", duplicateProduct);
+        } catch (IllegalArgumentException e) {
+            System.out.println("Duplicate Insertion Error: " + e.getMessage());
+        }
 
         scanner.close();
     }
