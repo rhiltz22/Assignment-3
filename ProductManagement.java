@@ -4,62 +4,63 @@ import java.util.Scanner;
 public class ProductManagement {
     public static void main(String[] args) {
         BalancedSearchTree<String, Product> tree = new BalancedSearchTree<>();
-        String fileName = "/Users/rhiltz/IdeaProjects/Week10/src/amazon-product-data.csv";
 
         // insertion process
 
-        try (Scanner scanner = new Scanner(new File(fileName))) {
-            while (scanner.hasNextLine()) {
-                String line = scanner.nextLine();
+        try {
+            Scanner fileScan = new Scanner(new File("/Users/rhiltz/IdeaProjects/Week10/csv/amazon-product-data.csv"));
+            while (fileScan.hasNext()) {
+                String line = fileScan.nextLine();
                 String[] parts = line.split(",");
                 if (parts.length == 4) {
                     String productId = parts[0];
                     String name = parts[1];
                     String category = parts[2];
-                    double price = Double.parseDouble(parts[3]);
-                    System.out.println("Product: " + productId + ", " + name + ", " + category + ", " + price);
+                    String price = parts[3];
+                    Product product = new Product(productId, name, category, price);
+
+                    // Insert the product into the tree
+                    tree.put(productId, product);
+
+                    StdOut.println("Inserted: " + product);
                 }
             }
         } catch (Exception e) {
-            System.out.println("Error reading file: " + e.getMessage());
+            StdOut.println("Error reading file: " + e.getMessage());
         }
 
-        Scanner scanner = new Scanner(System.in);
+        Scanner scan = new Scanner(System.in);
 
         // for search
-        System.out.println("Enter Product IDs to search (type 'exit' to stop):");
+        StdOut.println("Enter Product IDs to search (type 'exit' to stop):");
         while (true) {
-            System.out.print("Search Product ID: ");
-            String searchId = scanner.nextLine();
+            StdOut.println("Search Product ID: ");
+            String searchId = scan.nextLine();
             if (searchId.equalsIgnoreCase("exit")) {
                 break;
             }
 
             Product product = tree.get(searchId);
             if (product != null) {
-                System.out.println("Product Found: " + product);
+                StdOut.println("Product Found: " + product);
             } else {
-                System.out.println("Product with ID " + searchId + " not found.");
+                StdOut.println("Product with ID " + searchId + " not found.");
             }
         }
 
-        // hardcoded insertion examples
-        Product newProduct1 = new Product("P1000", "Wireless Earbuds", "Electronics", 59.99);
-        tree.put("P1000", newProduct1);
-        System.out.println("Inserted: " + newProduct1);
+        // hardcoded insertion
+        Product newProduct1 = new Product("12345", "Wireless Earbuds", "Electronics", "$59.99");
+        tree.put("12345", newProduct1);
+        StdOut.println("Inserted: " + newProduct1);
 
-        Product newProduct2 = new Product("P1001", "Gaming Mouse", "Accessories", 29.99);
-        tree.put("P1001", newProduct2);
-        System.out.println("Inserted: " + newProduct2);
+        Product newProduct2 = new Product("123456", "Wireless Mouse", "Electronics", "$29.99");
+        tree.put("123456", newProduct2);
+        StdOut.println("Inserted: " + newProduct2);
 
-        // duplicate example
-         try {
-            Product duplicateProduct = new Product("P1000", "Duplicate Wireless Earbuds", "Electronics", 49.99);
-            tree.put("P1000", duplicateProduct);
-        } catch (IllegalArgumentException e) {
-            System.out.println("Duplicate Insertion Error: " + e.getMessage());
-        }
+        Product newProduct3 = new Product("1234567", "Macbook Air", "Electronics", "$999.99");
+        tree.put("1234567", newProduct2);
+        StdOut.println("Inserted: " + newProduct2);
 
-        scanner.close();
+        scan.close();
     }
 }
