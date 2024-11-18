@@ -62,7 +62,7 @@ public class ProductManagement {
             Product duplicateProduct = new Product("12345", "Duplicate Wireless Earbuds", "Electronics", "$49.99");
             tree.put("12345", duplicateProduct);
         } catch (IllegalArgumentException e) {
-            System.out.println("Duplicate Insertion Error: " + e.getMessage());
+            StdOut.println("Duplicate Insertion Error: " + e.getMessage());
         }
 
         scan.close();
