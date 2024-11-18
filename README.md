@@ -1,4 +1,5 @@
 Search Example results:
+
 Search Product ID: 
 c2928dbf9796ceba44863a2736afb405
 Product Found: Product@3f6db3fb
@@ -10,6 +11,7 @@ ee121eb851dcbc4b9698ae0475e185f5
 Product Found: Product@18b0930f
 
 Hardcoded Insertion Results:
+
 Enter Product IDs to search (type 'exit' to stop):
 Search Product ID: 
 exit
