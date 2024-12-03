@@ -20,3 +20,8 @@ Inserted: Product@3a0d172f
 Inserted: Product@68ad99fe
 
 Process finished with exit code 0
+
+
+Time complexity Analysis:
+
+Red Black trees apply a strategy of using different colored links to ensure balance, the result is every path from root to null link contains the same amount of black links. This makes insertion and search very effictient because the height of the tree is at most 2 log N. 
